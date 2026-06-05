@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    min-height: 100%;
+  }
+  body {
+    @apply bg-neutral-50 text-neutral-800 font-sans antialiased;
+  }
+  :root {
+    --navbar-height: 3.5rem;
+    --sidebar-width: 0px;
+  }
+  @media (min-width: 768px) {
+    :root {
+      --sidebar-width: 15rem;
+    }
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-primary-light disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-primary bg-white px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary-pale focus:outline-none focus:ring-2 focus:ring-primary-light disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-status-danger px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-status-danger disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .input {
+    @apply block w-full rounded-md border border-neutral-200 bg-white px-3 py-2 text-sm text-neutral-800 placeholder-neutral-400 shadow-sm focus:border-primary-light focus:outline-none focus:ring-1 focus:ring-primary-light;
+  }
+  .label {
+    @apply mb-1 block text-sm font-medium text-neutral-700;
+  }
+  .card {
+    @apply rounded-lg border border-neutral-200 bg-white shadow-sm;
+  }
+  .table-header {
+    @apply bg-primary-pale text-primary-dark text-xs uppercase tracking-wider;
+  }
+  .row-overdue  { @apply bg-red-50; }
+  .row-issued   { @apply bg-cyan-50; }
+  .row-returned { @apply bg-green-50; }
+}
