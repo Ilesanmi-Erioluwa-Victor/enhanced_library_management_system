@@ -1,7 +1,7 @@
 import axios from "axios";
 import { STORAGE_KEY, clearStoredAuth } from "../context/AuthContext.jsx";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
   baseURL: API_URL,
@@ -34,7 +34,7 @@ api.interceptors.response.use(
       }
     }
     return Promise.reject(err);
-  }
+  },
 );
 
 export default api;

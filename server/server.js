@@ -23,14 +23,27 @@ const paymentRoutes = require("./routes/paymentRoutes");
 
 const app = express();
 
-app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173", credentials: true }));
-app.use(express.json({
-  verify: (req, _res, buf) => { req.rawBody = buf && buf.toString("utf8"); },
-}));
-app.use(express.urlencoded({ extended: true, verify: (req, _res, buf) => { req.rawBody = buf && buf.toString("utf8"); } }));
+app.use(cors({ origin: "*", credentials: true }));
+app.use(
+  express.json({
+    verify: (req, _res, buf) => {
+      req.rawBody = buf && buf.toString("utf8");
+    },
+  }),
+);
+app.use(
+  express.urlencoded({
+    extended: true,
+    verify: (req, _res, buf) => {
+      req.rawBody = buf && buf.toString("utf8");
+    },
+  }),
+);
 app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
 
-app.get("/api/health", (req, res) => res.json({ status: "ok", timestamp: new Date().toISOString() }));
+app.get("/api/health", (req, res) =>
+  res.json({ status: "ok", timestamp: new Date().toISOString() }),
+);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
